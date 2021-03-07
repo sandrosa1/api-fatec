@@ -1,15 +1,22 @@
 <?php
+// zera variaveris
 $cards="";
  $pokemon = ""; 
 $cards="";
 $id = 1;
-$n = rand(8,1118);
-$n2 = $n - 8;
 
+// Excolher aleatóriamente 4 cards para iniciar a pagina
+$n = rand(4,1118);
+$n2 = $n - 4;
+
+// url da api para trazer o nome dos pokemons e sua url para consulta
 $urlNomes = "https://pokeapi.co/api/v2/pokemon?limit={$n}&offset={$n2}";
+//Converte json em objeto
 $namesPokemons = json_decode(file_get_contents($urlNomes));
+//pega o nome do pokemon e coloca na variavel
 $pokemon = isset($_POST["pokemon"]) ? $_POST["pokemon"]: ""; 
 
+// Criando dois arrays para guardar o nome do pokemon e sua url da imagem
 $i = 0;
 $names = [];
 $urlPokemons = [];
@@ -19,44 +26,44 @@ foreach($namesPokemons->results as $value){
     $i++;
 }
 
+
+//Açao de pesquisa
 if(isset($_POST['action'])){
 
-   if($pokemon == ""){
-        $cards = createCards($names,$urlPokemons);
-
-   }
-   else
-   {
-        $cards = createCardsPokemon($pokemon);
+//se houver ação chama a funçao para trazer solicitação
+    $cards = createCardsPokemon($pokemon);
         
-   }
-    
 
 }else{
-
+// se nao tras 4 cards aleatorio
     $cards = createCards($names,$urlPokemons);
 }
 
-
+//Função para criar card pesquisado
 function createCardsPokemon($pokemon){
 
     $urlPokemon = "https://pokeapi.co/api/v2/pokemon/{$pokemon}";
     $namesPokemon = json_decode(file_get_contents($urlPokemon));
    
     if(is_null($namesPokemon)){ 
+        //Se nao existir pokemon chama função card error
         $cards = cardError();
+
         
 
     }else{
-
+        
         $pokemon = getPokemonProperties($namesPokemon);
+        // pokemon recebe suas propriedades
         $cards = createCardsUnique($pokemon);
+        // cria card com propriedades
         
     }
     return $cards;
     
 }
 
+//Busca a imagem
 function getImage($imgPokemon){
 
     $urlNomes = $imgPokemon;
@@ -65,7 +72,7 @@ function getImage($imgPokemon){
     return $namesPokemons->sprites->front_default;
 
 }
-
+//Busca as propriedades
 function getPokemonProperties($namesPokemon){
     $pokemonProperties = [];
     $pokemonProperties[0] = $namesPokemon->forms[0]->name;  // 1 nome
@@ -78,12 +85,12 @@ function getPokemonProperties($namesPokemon){
     return $pokemonProperties;
 
 }
-
+//Cria os 4 cards
 function createCards($names,$urlPokemons){
 
     $cards ="";
-    for($j = 0; $j < 8; $j++ ){ 
-        $pokemom = $names[$j];
+    for($j = 0; $j < 4; $j++ ){ 
+        $pokemon = $names[$j];
         $urlPokemon = $urlPokemons[$j];
         $imgPokemon = getImage($urlPokemon);
         $cards .= "<div class='card'>
@@ -91,8 +98,8 @@ function createCards($names,$urlPokemons){
         <img src='{$imgPokemon}'/>
         </div>
         <div class='card-body'>
-        <h4>{$pokemom}</h4>
-            <a nome='{$urlPokemon}' class='btn'>Saiba mais</a>
+        <h4>{$pokemon}</h4>
+            <a href='habilidades.php?var={$pokemon}' class='card-btn'>Habilidades</a>
         </div>
     </div>";
     
@@ -102,7 +109,7 @@ function createCards($names,$urlPokemons){
 
 }
 
-
+//crai card com propriedades
 function createCardsUnique($pokemon){
 
     $name = $pokemon[0];
@@ -125,13 +132,14 @@ function createCardsUnique($pokemon){
         <p>Skllis: {$ability1}, {$ability2}</p>
         <p>Altura: {$heigth}</p>
         <p>Peso: {$weight}</p>
+        <a href='index.php' class='card-btn'>Voltar</a>
         </div>
         </div>";
     return $cards;
 
 }
 
-
+//cria card de error
 function cardError(){
 
     $cards ="";

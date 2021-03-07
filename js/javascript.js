@@ -1,15 +1,16 @@
 
-
+/*url para trazer nomes do pokemon*/
 fetch("https://pokeapi.co/api/v2/pokemon?limit=1138&offset=0",{
   cache:'no-store'
   })
-  //Na pirmeira promisse nos recebemos um JSON
-  //Na segunda promisse retorna o json no console.log
+  /* Na primeira promisse nos recebemos um JSON
+  Na segunda promisse retorna o json  e atraves do map trazemos os nomes do pokemons*/
   .then(response => response.json())
   .then(json =>  {
     let names = [];
     names = json.results;
     pokemon = names.map((names) => names.name)
+    /**autocomplete recebe o input da pesquisa e os nomes dos pokemons */
     autocomplete(document.getElementById("myInput"), pokemon);
     } )
 .catch(erro =>  console.log(erro))
@@ -113,42 +114,7 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*Uma array contendo pokemons*/
 
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-
-
-
-
-
-
-
-
-
-// function autoComplete(cidade,pokemon) {
-
-// const destino = pokemon;
-//   return destino.filter((valor) => { const valorMinusculo = valor.toLowerCase() 
-//     const cidadeMinusculo = cidade.toLowerCase()
-
-//   return valorMinusculo.includes(cidadeMinusculo)
-//  })
-// }
-
-// const campo = document.querySelector('.campo')
-// const sugestoes = document.querySelector('.sugestoes')
-
-// campo.addEventListener('input', ({ target }) => {
-//   const dadosDoCampo = target.value
-//     if(dadosDoCampo.length > 1)
-//     {
-//       const autoCompleteValores = autoComplete(dadosDoCampo,pokemon)
-//       sugestoes.innerHTML = `${autoCompleteValores.map((value) => { return (`<li>${value}</li>`)}).join('')}
-//         `
-//     }
-// })
-  
 
 
 

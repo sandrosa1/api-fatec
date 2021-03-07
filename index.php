@@ -12,46 +12,43 @@
 </head>
 
 <body>
-
+    <!-- Navbar -->
     <nav>
         <div class="nav-wrapper #ffff00 yellow accent-2">
             <a href="#!" class="brand-logo"><img class="logo" src="./public/pokebola.png"></a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down ">
-                <li><a class="red-text " href="sass.html">Pokemon</a></li>
-                <li><a class="red-text " href="badges.html">Marvel</a></li>
+                <li><a class="red-text " href="index.php">Pokemon</a></li>
+                <li><a class="red-text " href="marvel.php">Marvel</a></li>
             </ul>
         </div>
     </nav>
-
     <ul class="sidenav #f44336 red" id="mobile-demo">
-        <li><a class="#ffffff white-text" href=" sass.html">Pokemon</a></li>
-        <li><a class="#ffffff white-text" href=" badges.html">Marvel</a></li>
+        <li><a class="#ffffff white-text" href="index.php">Pokemon</a></li>
+        <li><a class="#ffffff white-text" href="marvel.php">Marvel</a></li>
     </ul>
+
+    <!-- Container -->
     <div class="container">
+        <!-- Pesquisa pokemon -->
         <div class="row">
-        <nav>
-    <div class="nav-wrapper">
-      <form>
-        <div class="input-field">
-          <input id="search" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
+            <div class="col s4 offset-s8" style="width:350px;background:white;border-radius:5px;">
+            <form method="POST" action="index.php">
+                    <div class="autocomplete " style="width:200px;">
+                        <input id="myInput" type="text" name="pokemon" placeholder="Procurar Pokemon">
+                    </div>
+                    <input type="submit" name="action" value="Pesquisar" style="background:green; margin:13px 0 0 15px;">
+            </form>
+            </div>
         </div>
-      </form>
-    </div>
-  </nav>
-        </div>
-        <div class="row">
+        <!-- Cards pokemon -->
+        <div class="row" id="cards">
             <?php echo $cards; ?>
         </div>
-        
+
     </div>
-    <footer class="page-footer #ffff00 yellow accent-2">
-          <div class="footer-copyright">
-            © 2021 Copyright Sandro Amancio
-          </div>
-        </footer>
+    <!-- Footer -->
+
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/javascript.js"></script>

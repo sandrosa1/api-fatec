@@ -50,7 +50,3 @@ function getImage($imgPokemon){
     return $namesPokemons->sprites->front_default;
 
 }
-
-
-
-

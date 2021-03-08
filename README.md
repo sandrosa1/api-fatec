@@ -1,3 +1,7 @@
+# API POKEMON
+
+Aqui vamos criar um pagina que recebe dados da - [API POKEMON ](https://pokeapi.co) e interagir com ela trazendo dados, imagens e habilidades, utilizando PHP para as requisições atraves de metódo POST e GET. O javaScript será utilizado para o autocomplete.
+
 ## Desenvolvimento
 
 ###  Cards inciais
@@ -18,4 +22,6 @@
 * funçao array.map para pegar os nome e criar array com pokemon nomes
 * função autocomplete com focus, e movimentação atraves das setas
 * ![Autocomplete/card](https://github.com/sandrosa1/api-fatec/blob/main/public/autocomplete.png)
+
+
 

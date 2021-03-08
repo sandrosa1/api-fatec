@@ -27,18 +27,27 @@ foreach($namesPokemons->results as $value){
 }
 
 
-//Açao de pesquisa
 if(isset($_POST['action'])){
 
-//se houver ação chama a funçao para trazer solicitação
-    $cards = createCardsPokemon($pokemon);
-        
+    if($pokemon == ""){
 
-}else{
-// se nao tras 4 cards aleatorio
-    $cards = createCards($names,$urlPokemons);
-}
+         $cards = cardError($names,$urlPokemons);
 
+ 
+    }
+    else
+    {
+         $cards = createCardsPokemon($pokemon);
+         
+    }
+     
+ 
+ }else{
+ 
+     $cards = createCards($names,$urlPokemons);
+ }
+
+ 
 //Função para criar card pesquisado
 function createCardsPokemon($pokemon){
 

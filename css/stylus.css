@@ -68,6 +68,16 @@ body{
 h4{
     font-size: 1em;
 }
+.div-h1{
+
+    text-align: center;
+    margin: 0 auto;
+    
+ }
+ h1{
+
+    font-weight: 900;
+ }
 
 .card:hover{
     transform: scale(1.05);

@@ -82,6 +82,11 @@ function createCardsUnique($pokemon,$previous ){
     <!-- Container -->
     <div class='container'>
         <div class='row'>
+        <div class='div-h1'>
+        <h1>Habilidades</h1>
+        </div>
+        </div>
+        <div class='row'>
         <div class='card-unico'>
         <div class='card-header'>
         <img src='{$img}'/>
@@ -93,6 +98,7 @@ function createCardsUnique($pokemon,$previous ){
         <p>Altura: {$heigth}</p>
         <p>Peso: {$weight}</p>
         <a class='card-btn'href='./'>Voltar</a>
+        </div>
         </div>
         </div>
         </div>

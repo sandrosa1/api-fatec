@@ -92,7 +92,7 @@ function createCardsUnique($pokemon,$previous ){
         <p>Skllis: {$ability1}, {$ability2}</p>
         <p>Altura: {$heigth}</p>
         <p>Peso: {$weight}</p>
-        <a href='./'>Return</a>
+        <a class='card-btn'href='./'>Voltar</a>
         </div>
         </div>
         </div>

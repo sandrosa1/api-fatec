@@ -65,6 +65,9 @@ body{
     padding: 10px 5px;
 
 }
+h4{
+    font-size: 1em;
+}
 
 .card:hover{
     transform: scale(1.05);

@@ -81,8 +81,8 @@ function getPokemonProperties($namesPokemon){
 function createCards(){
 
     // Excolher aleatóriamente 4 cards para iniciar a pagina
-   $n = rand(4,1118);
-   $n2 = 4;
+   $n = rand(8,1118);
+   $n2 = 8;
 
    // url da api para trazer o nome dos pokemons e sua url para consulta
    $urlNomes = "https://pokeapi.co/api/v2/pokemon?limit=$n2&offset=$n";
@@ -101,7 +101,7 @@ function createCards(){
 }
 function cards($cards){
     
-    for($j = 0; $j < 4; $j++ ){ 
+    for($j = 0; $j < 8; $j++ ){ 
 
         $pokemon = $cards[$j][0];
         $imgPokemon = getImage($cards[$j][1]);

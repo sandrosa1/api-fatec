@@ -13,6 +13,13 @@ function pesquisar(){
 
 }
 
+function habilidadesPokemon(obj){
+
+  let pesquisar = obj
+  gravar(pesquisar)
+
+}
+
 function gravar(pokemon){
     
 
@@ -52,9 +59,9 @@ function gravar(pokemon){
 function cardsIndex(obj){
 
 let card =" ";
-  for(let j = 0; j< 4; j++)
+  for(let j = 0; j < 8; j++)
   {
-    card +=`<div class='card'><div class='card-header'><img src='${obj[j][1]}'/></div><div class='card-body'><h4>${obj[j][0]}</h4><a class='card-btn'onclick="cards(${obj[j][0]})>Habilidades</a></div></div>`
+    card +=` <div class='card'> <div class='card-header'> <img src='${obj[j][1]}'alt='imagem do pokemon${obj[j][0]}'/> </div> <div class='card-body'> <h4>${obj[j][0]}</h4> <a id="${obj[j][0]}" class='card-btn'onclick="habilidadesPokemon(this.id)">Habilidades</a> </div> </div> `
 
   }
 
@@ -105,13 +112,7 @@ function cardErro(){
 }
 
 
-
-
-
-
-
-
-/*url para trazer nomes do pokemon*/
+/*---------------------------------------------url para trazer nomes do pokemon----------------------------------------------------------*/
 fetch("https://pokeapi.co/api/v2/pokemon?limit=1138&offset=0",{
   cache:'no-store'
   })

@@ -89,9 +89,12 @@ h4{
 }
 
 .pesquisar{
-    width: 40%;
-    background: red;
+
+    width: 30%;
     border-radius: 5px;
+    background: linear-gradient(to right, #a8f060, #17f831);
+    margin:13px 0 0 15px;
+
 }
 /* autoComplete */
 /*the container must be positioned relative:*/
@@ -155,7 +158,12 @@ h4{
     margin-bottom: 50px;
     transition: 0.3s;
     }
-
+    .cardLoading{
+        margin: 0 auto;
+        width: 500px; /* Valor da Largura */
+        margin-bottom: 50px;
+        transition: 0.3s;
+    }
 
 /* Responsive media queries */
 @media screen and (max-width:1000px){

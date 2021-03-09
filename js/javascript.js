@@ -1,3 +1,115 @@
+const URL_BASE = 'http://localhost/PHP2/api-fatec/api/index.php'
+
+const CarregandoLoading = () => document.getElementById('root').innerHTML = `<div class='cardLoading'><img id="img2" src="./public/pikachu.gif" alt="Pikachu correndo"></div>`
+const ParandoLoading = () => document.getElementById('root').innerHTML = ''
+
+let pagina = "pagina"
+window.onload = gravar(pagina)
+
+function pesquisar(){
+
+  let pesquisar = document.getElementById('pesquisarPokemon').value
+  gravar(pesquisar)
+
+}
+
+function gravar(pokemon){
+    
+
+      CarregandoLoading()
+      let msg 
+      fetch(URL_BASE, 
+      {
+          method :'POST',
+          body:'pokemon='+pokemon,
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          }
+      })
+      .then(response => response.json())
+      .then(json => {
+                    array = json.mensagem
+                    console.log(array)
+                    if(pokemon =="pagina"){
+
+                      cardsIndex(array)
+
+                    }else if(array == "ERROR"){
+                        
+                      cardErro(array)
+
+                    }else{
+
+                      cardPesquisa(array)
+                    }
+
+     })
+      .catch(erro =>  cardErro())
+      .finally( final => document.getElementById('pesquisarPokemon').innerHTML = "")
+  
+}
+
+function cardsIndex(obj){
+
+let card =" ";
+  for(let j = 0; j< 4; j++)
+  {
+    card +=`<div class='card'><div class='card-header'><img src='${obj[j][1]}'/></div><div class='card-body'><h4>${obj[j][0]}</h4><a class='card-btn'onclick="cards(${obj[j][0]})>Habilidades</a></div></div>`
+
+  }
+
+  ParandoLoading()
+  document.getElementById('root').innerHTML = card
+  console.log(card)
+}
+
+function cardPesquisa(obj){
+
+  let card = `<div class='card-unico'>
+    <div class='card-header'>
+    <img src='${obj[1]}'/>
+    </div>
+    <div class='card-body'>
+    <h4>${obj[0]}</h4>
+    <p>Type: ${obj[2]}</p>
+    <p>Skllis: ${obj[3]}, ${obj[4]}</p>
+    <p>Altura: ${obj[5]}</p>
+    <p>Peso: ${obj[6]}</p>
+    <a href='index.html' class='card-btn'>Voltar</a>
+    </div>
+    </div>`
+
+    ParandoLoading()
+    document.getElementById('root').innerHTML = card
+    
+
+}
+
+function cardErro(){
+
+
+  let card = `<div class='card-unico'>
+          <div class='card-header'>
+          <img src='./public/chorando.gif'/>
+          </div>
+          <div class='card-body'>
+          <h4>Desculpe!</h4>
+          <p>Talvez o nome ou número do pokemon seja inválido, tente outro.</p>
+          </div>
+          </div>`
+
+  ParandoLoading()
+  document.getElementById('root').innerHTML = card
+
+
+}
+
+
+
+
+
+
+
 
 /*url para trazer nomes do pokemon*/
 fetch("https://pokeapi.co/api/v2/pokemon?limit=1138&offset=0",{
@@ -11,7 +123,7 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=1138&offset=0",{
     names = json.results;
     pokemon = names.map((names) => names.name)
     /**autocomplete recebe o input da pesquisa e os nomes dos pokemons */
-    autocomplete(document.getElementById("myInput"), pokemon);
+    autocomplete(document.getElementById("pesquisarPokemon"), pokemon);
     } )
 .catch(erro =>  console.log(erro))
 

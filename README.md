@@ -6,7 +6,7 @@ Aqui vamos criar um pagina que recebe dados da - [API POKEMON ](https://pokeapi.
 
 ###  Cards inciais
 
-* A página carrega quatro cards aleatório, ao clicar na habilidade vai a pagina habilidade levando na url o pokemon.
+* A página carrega quatro cards aleatório, ao clicar na habilidade vai para a pagina habilidades.php levando na url o pokemon.
 
   ![Autocomplete/card](https://github.com/sandrosa1/api-fatec/blob/main/public/cardsiniciais.png)
 
@@ -19,8 +19,8 @@ Aqui vamos criar um pagina que recebe dados da - [API POKEMON ](https://pokeapi.
 ### Para o autocomplete utilizaremos javaScript .
 
 * fetch promice para trazer dados da url da api
-* funçao array.map para pegar os nome e criar array com pokemon nomes
-* função autocomplete com focus, e movimentação atraves das setas
+* função array.map para pegar os nomes e criar array com nomes dos pokemons
+* função autocomplete com focus, e movimentação através das setas
 * ![Autocomplete/card](https://github.com/sandrosa1/api-fatec/blob/main/public/autocomplete.png)
 
 

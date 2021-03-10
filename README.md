@@ -4,7 +4,7 @@ Aqui vamos criar um pagina que recebe dados da - [API POKEMON ](https://pokeapi.
 
 
 
-\* ![Autocomplete/card](https://github.com/sandrosa1/api-fatec/blob/main/public/projeto.mp4)
+\* ![Autocomplete/card](https://github.com/sandrosa1/api-fatec/blob/main/public/projeto.gif)
 
 
 

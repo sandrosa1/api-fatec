@@ -1,29 +1,58 @@
-const URL_BASE = 'http://localhost/PHP2/api-fatec/api/index.php'
+const URL_BASE = 'http://localhost/PHP2/api-fatec/serverControl/index.php'
 
-const CarregandoLoading = () => document.getElementById('root').innerHTML = `<div class='cardLoading'><img id="img2" src="./public/pikachu.gif" alt="Pikachu correndo"></div>`
-const ParandoLoading = () => document.getElementById('root').innerHTML = ''
+/**Variaveis para o loading */ 
+const CarregandoLoading = () => document.getElementById('root').innerHTML = `<div class='cardLoading'><img id="img2" src="./public/pikachu.gif" alt="Pikachu correndo"></div>`;
+const ParandoLoading = () => document.getElementById('root').innerHTML = '';
 
-let pagina = "pagina"
-window.onload = gravar(pagina)
+/** funçao que inicia a pagina
+ parametro pagina executa uma função no back end*/
+const pagina = "pagina";
+window.onload = gravar(pagina);
 
+
+/**acionada pelo botão de pesquisa*/
 function pesquisar(){
 
-  let pesquisar = document.getElementById('pesquisarPokemon').value
-  gravar(pesquisar)
+  let pesquisar ="";
+  pesquisar = document.getElementById('pesquisarPokemon').value;
+
+  if(pesquisar == ""){
+    /**se não existir pokemon */
+    document.getElementById('pesquisarPokemon').value ="Cade o Pokemon!";
+    document.getElementById('pesquisarPokemon').style.color="red";
+
+  }else{
+    /**parametro pesquisar leva o nome do pokemon */
+    gravar(pesquisar);
+
+  }
 
 }
 
-function habilidadesPokemon(obj){
+pesquisarPokemon.addEventListener('click', ()=>{
+  /**retorna o input pa estado original */
+  document.getElementById('pesquisarPokemon').value ="";
+  document.getElementById('pesquisarPokemon').style.color="revert";
 
-  let pesquisar = obj
-  gravar(pesquisar)
+})
+
+
+function habilidadesPokemon(obj){
+/**acionada pelo card da index.html */
+  let pesquisar = obj;
+  gravar(pesquisar);
 
 }
 
 function gravar(pokemon){
-    
 
-      CarregandoLoading()
+    /** Chama o loading
+     * leva o parametro via post para o server control
+     *  Devolve um obj json com a solicitação 
+     * Executa um validação de conteudo
+     * De acordo com a validaçao chama a função 
+    */
+      CarregandoLoading();
       let msg 
       fetch(URL_BASE, 
       {
@@ -39,62 +68,64 @@ function gravar(pokemon){
                     console.log(array)
                     if(pokemon =="pagina"){
 
-                      cardsIndex(array)
+                      cardsIndex(array);
 
                     }else if(array == "ERROR"){
                         
-                      cardErro(array)
+                      cardErro(array);
 
                     }else{
 
-                      cardPesquisa(array)
+                      cardPesquisa(array);
                     }
-
      })
       .catch(erro =>  cardErro())
-      .finally( final => document.getElementById('pesquisarPokemon').innerHTML = "")
+      .finally( final => document.getElementById('pesquisarPokemon').value.innerHTML = "")
   
 }
 
-function cardsIndex(obj){
 
+function cardsIndex(obj){
+/**Acionada  os cards para index.html */
 let card =" ";
   for(let j = 0; j < 8; j++)
   {
-    card +=` <div class='card'> <div class='card-header'> <img src='${obj[j][1]}'alt='imagem do pokemon${obj[j][0]}'/> </div> <div class='card-body'> <h4>${obj[j][0]}</h4> <a id="${obj[j][0]}" class='card-btn'onclick="habilidadesPokemon(this.id)">Habilidades</a> </div> </div> `
+    card +=` <div class='card'> <div class='card-header'> <img src='${obj[j][1]}'alt='imagem do pokemon${obj[j][0]}'/> </div> <div class='card-body'> <h4>${obj[j][0]}</h4> <a id="${obj[j][0]}" class='card-btn'onclick="habilidadesPokemon(this.id)">Habilidades</a> </div> </div> `;
 
   }
 
-  ParandoLoading()
-  document.getElementById('root').innerHTML = card
-  console.log(card)
+/**Par o loading e imprime o card na div#root */
+  ParandoLoading();
+  document.getElementById('root').innerHTML = card;
+
 }
 
 function cardPesquisa(obj){
-
+/**Imprime card de habilidades */
   let card = `<div class='card-unico'>
     <div class='card-header'>
     <img src='${obj[1]}'/>
     </div>
-    <div class='card-body'>
+    <div class='card-body1'>
     <h4>${obj[0]}</h4>
     <p>Type: ${obj[2]}</p>
     <p>Skllis: ${obj[3]}, ${obj[4]}</p>
-    <p>Altura: ${obj[5]}</p>
-    <p>Peso: ${obj[6]}</p>
+    <p>Altura: ${obj[5]} M</p>
+    <p>Peso: ${obj[6]} kg</p>
     <a href='index.html' class='card-btn'>Voltar</a>
     </div>
-    </div>`
+    </div>`;
 
-    ParandoLoading()
-    document.getElementById('root').innerHTML = card
+    /**Par o loading e imprime o card na div#root */
+    ParandoLoading();
+    document.getElementById('root').innerHTML = card;
     
 
 }
 
 function cardErro(){
 
-
+/** imprime card de error */
   let card = `<div class='card-unico'>
           <div class='card-header'>
           <img src='./public/chorando.gif'/>
@@ -102,11 +133,14 @@ function cardErro(){
           <div class='card-body'>
           <h4>Desculpe!</h4>
           <p>Talvez o nome ou número do pokemon seja inválido, tente outro.</p>
+          <a href='index.html' class='card-btn'>Voltar</a>
           </div>
-          </div>`
+          </div>`;
 
-  ParandoLoading()
-  document.getElementById('root').innerHTML = card
+   /**Par o loading e imprime o card na div#root */       
+  ParandoLoading();
+  document.getElementById('root').innerHTML = card;
+
 
 
 }

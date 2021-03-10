@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 *{
     padding:0;
     margin: 0;
@@ -7,7 +8,8 @@
 
 body{
     background-image: url("../public/backgroundPokemom.jpg");
-    font-family: sans-serif;
+   
+    font-family: 'Righteous', cursive;
 
 }
 .container{
@@ -38,7 +40,7 @@ body{
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 50px;
-    transition: 0.3s;
+    transition: 1s;
 }
 
 .card-header{
@@ -54,6 +56,11 @@ body{
     text-align: center;
     font-size: 18px;
 }
+.card-body1{
+    padding: 10px 20px;
+    text-align:left;
+    font-size: 18px;
+}
 
 .card-btn {
     display: block;
@@ -67,6 +74,7 @@ body{
 }
 h4{
     font-size: 1em;
+    text-align: center;
 }
 .div-h1{
 
@@ -160,7 +168,7 @@ h4{
     }
     .cardLoading{
         margin: 0 auto;
-        width: 500px; /* Valor da Largura */
+        width: 700px; /* Valor da Largura */
         margin-bottom: 50px;
         transition: 0.3s;
     }
